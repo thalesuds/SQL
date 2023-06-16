@@ -1,0 +1,46 @@
+1) Representam os clientes, as vendas e os pagamentos.
+b) Se relacionam por client_id e sell_id;
+c e d) 
+
+Para dataClient:
+client_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+address VARCHAR(255),
+CNPJ VARCHAR(255) NOT NULL
+
+Para sells:
+sell_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+client_id INT NOT NULL,
+amount DECIMAL(9, 2),
+sellDate DATETIME,
+productsNumber FLOAT,
+paymentMethod VARCHAR(255),
+paymentDate VARCHAR(255),
+FOREIGN KEY (client_id) REFERENCES dataClient(client_id)
+
+Para payments:
+payment_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+sell_id INT NOT NULL,
+amount FLOAT NOT NULL,
+paymentDate DATE,
+payed BOOL NOT NULL,
+receiptDate DATETIME,
+FOREIGN KEY (sell_id) REFERENCES sells(sell_id)
+
+e) Autoincrementais e não nulas. Além de chaves primárias
+ou chaves estrangeiras.
+
+2) Os comandos são:
+
+CREATE DATABASE IF NOT EXISTS pasoka;
+
+USE pasoka;
+
+CREATE TABLE IF NOT EXISTS pasoka.dataClient
+CREATE TABLE IF NOT EXISTS pasoka.sells
+CREATE TABLE IF NOT EXISTS pasoka.payments
+
+De forma manual, através de API, aplicação WEB e importando os dados
+de um arquivo CSV.
+
+

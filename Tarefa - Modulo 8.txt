@@ -1,0 +1,71 @@
+1)
+a)
+SELECT 
+	staff.staff_id,
+    COUNT(rental.rental_id)
+FROM staff
+	LEFT JOIN rental
+	ON staff.staff_id = rental.staff_id
+	AND YEAR(rental.rental_date) = 2005 AND MONTH(rental.rental_date) = 6
+GROUP BY staff.staff_id
+
+
+
+b) Foi usada a cláusula LEFT JOIN, para que
+os dados fossem somados de acordo com os registros da tabela staff.
+Neste caso, com o RIGHT JOIN surgeria a presença de campos Nulos.
+
+c)SELECT 
+	staff.staff_id,
+    COUNT(payment.staff_id)
+FROM staff
+	LEFT JOIN payment
+	ON staff.staff_id = payment.staff_id
+	AND YEAR(payment.payment_date) = 2005 AND MONTH(payment.payment_date) = 6
+GROUP BY staff.staff_id
+
+
+d)O staff 1 deve ser o premiado. Alugou 1163 filmes.
+
+SELECT 
+    SUM(payment.amount)
+FROM staff
+	LEFT JOIN payment
+	ON staff.staff_id = payment.staff_id
+	AND YEAR(payment.payment_date) = 2005 AND MONTH(payment.payment_date) = 6
+
+$ 9629.89
+
+
+###########################################################################################
+
+2) Para descobrir o número de filmes sem devolução.
+
+SELECT COUNT(rental_id)
+FROM rental
+WHERE return_date IS NULL
+
+Total = 183
+
+Para obter email dos clientes que não devolveram filmes.
+
+SELECT 
+	distinct rental.customer_id,
+	customer.email
+FROM rental
+	LEFT JOIN customer
+	ON rental.customer_id = customer.customer_id
+WHERE rental.return_date IS NULL
+
+
+SELECT 
+	customer.email,
+    GROUP_CONCAT(film.title)
+FROM rental
+	LEFT JOIN customer
+	ON rental.customer_id = customer.customer_id
+    LEFT JOIN inventory
+    ON rental.inventory_id = inventory.inventory_id
+    LEFT JOIN film
+    ON inventory.film_id = film.film_id
+WHERE rental.return_date IS NULL

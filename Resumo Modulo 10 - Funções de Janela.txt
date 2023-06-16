@@ -1,0 +1,26 @@
+SELECT ROW_NUMBER OVER() || AVG || SUM || COUNT || MAX || MIN
+
+no OVER podemos ter
+
+PARTITION BY[column name] and ORDER BY [column name]
+
+
+Além disso há as funções 
+LAG e LEAD
+
+ainda há o ROWS UNBOUNDED PRECEDING, que serve para somar a linha anterior e a atual.
+
+exemplo SUM (PESO) OVER(ROWS UNBOUND PRECEDING), ainda há a possibilidade de particionar aqui.
+
+SUM (PESO) OVER (PARTITION BY [column name] ROWS UNBOUND PRECEDING)
+
+
+Ainda, há a possibilidade de fazer percentil usando o NTILE
+
+SELECT NTILE(NumDivisões) OVER (ORDER BY [column name])
+
+
+Diferentes formas de rankear os dados
+ROW_NUMBER()
+RANK()
+DENSE_RANK()

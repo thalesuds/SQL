@@ -1,0 +1,25 @@
+1a) Está organizada por odem crescente do atributo rental_date
+b) SELECT * FROM rental ORDER BY return_date DESC
+c) SELECT * FROM rental ORDER BY customer_id ASC, return_date ASC
+d) São os últimos registros da tabela.
+
+2)SELECT special_features FROM film GROUP BY special_features
+
+'Deleted Scenes,Behind the Scenes'
+'Trailers,Deleted Scenes'
+'Commentaries,Behind the Scenes'
+'Deleted Scenes'
+'Trailers'
+'Commentaries,Deleted Scenes'
+'Trailers,Deleted Scenes,Behind the Scenes'
+'Trailers,Commentaries,Behind the Scenes'
+'Trailers,Commentaries'
+'Trailers,Behind the Scenes'
+'Commentaries,Deleted Scenes,Behind the Scenes'
+'Trailers,Commentaries,Deleted Scenes'
+'Trailers,Commentaries,Deleted Scenes,Behind the Scenes'
+'Behind the Scenes'
+'Commentaries'
+
+
+3) SELECT last_name, first_name FROM customer ORDER BY last_name ASC, first_name DESC 

@@ -1,0 +1,48 @@
+1)
+CUSTOMER - 599
+select COUNT(*) FROM customer
+select COUNT(customer_id) FROM customer
+select COUNT(email) FROM customer
+
+FILM - 1000
+select COUNT(*) FROM film
+select COUNT(release_year) FROM customer
+select COUNT(rental_rate) FROM film
+
+RENTAL - 16044
+select COUNT(*) FROM rental
+select COUNT(rental_id) FROM rental
+select COUNT(customer_id) FROM rental
+
+2) SELECT YEAR(payment_date) as ano,MONTH(payment_date) as mes, avg(amount) as avg_amount
+FROM payment
+GROUP BY YEAR(payment_date),
+MONTH(payment_date)
+HAVING ano = 2005 and mes = 6
+
+3) Uma vez selecionada a tabela filme, é possível descobrir o máximo e o mínimo
+do atributo replacement_cost, clicando no nome do atributo no result grid,
+assim ficará ordenado primeiramente de forma crescente e clicando novamente
+ficará de forma decrescente.
+
+Utilizando query:
+SELECT MAX(replacement_cost) from film
+
+Sendo o custo máximo de $ 29.99
+
+
+4) SELECT rental_duration as duracao_aluguel, COUNT(DISTINCT Title) as total_filmes, AVG(length) as medica_duracao_filme
+from film
+GROUP BY rental_duration
+
+5) 2 clientes, sendo o 148 e o 526
+
+SELECT customer_id, SUM(AMOUNT) as sum_amount
+FROM payment
+GROUP BY customer_id
+HAVING sum_amount > 200
+
+
+
+
+

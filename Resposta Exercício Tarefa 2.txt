@@ -1,0 +1,8 @@
+1) Mike Hillyer
+   Jon Stephens
+
+2) select first_name, last_name, email from customer
+
+3) select city as nome_cidade, country_id as id_pais, city_id as id_cidade, last_update as ultima_atualizacao from city
+
+4) select distinct district from address

@@ -1,0 +1,31 @@
+1) SELECT film_id, title, rental_rate,
+		    CASE
+				WHEN rental_rate <= 0.99 THEN "BASICO"
+                WHEN rental_rate > 0.99 AND rental_rate <= 2.99 THEN "ESSENCIAL"
+                WHEN rental_rate > 2.99 THEN "EXCLUSIVO"
+			END as classificacao
+                FROM film
+
+
+2) SELECT 
+    COUNT(CASE WHEN active = 1 and store_id = 1 THEN "ativo" END) as clientes_ativos_loja_1,
+    COUNT(CASE WHEN active = 0 and store_id = 1 THEN "inativo" END) as clientes_inativos_loja_1,
+    COUNT(CASE WHEN active = 1 and store_id = 2 THEN "ativo" END) as clientes_ativos_loja_2,
+    COUNT(CASE WHEN active = 0 and store_id = 2 THEN "inativo" END) as clientes_inativos_loja_1
+    FROM customer
+    
+
+3) SELECT store_id,
+    COUNT(CASE WHEN active = 1 THEN "ativo" END) as clientes_ativos,
+    COUNT(CASE WHEN active = 0 THEN "inativo" END) as clientes_inativos
+    FROM customer
+GROUP BY store_id
+
+4)
+SELECT address,
+CASE WHEN city_id = 1 THEN "A Coruña"
+	 WHEN city_id = 2 THEN "Abha"
+     WHEN city_id = 3 THEN "Abu Dhabi"
+     WHEN city_id = 4 THEN "Acuña"
+     WHEN city_id = 5 THEN "Adana" END AS nome_da_cidade
+ FROM address

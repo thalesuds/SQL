@@ -1,0 +1,43 @@
+SELECT * from mysql.user
+
+usuário root é o padrão do banco de dados.
+
+CREATE USER 'felippe'@'localhost' IDENTIFIED BY 'minhasenha1';
+
+CREATE USER 'felippe'@'localhost' COMMENT 'Usuário administrativo';
+
+SELECT *
+	FROM mysql.user;
+
+SELECT CURRENT_USER();
+
+
+Alterar Usuários
+ALTER USER 'felippe'@'localhost'
+	ATTRIBUTE '("area":"analytics")';
+
+ALTER USER 'felippe'@'localhost'
+	COMMENT 'novo comentário';
+
+DROP USER 'felippe'@'localhost";
+
+deletar usuário em todo banco
+DROP USER 'felippe'@'%';
+
+
+Papéis e privilégios de acesso
+GRANT SELECT ON sgpm.* TO 'felippe'@'localhost'
+GRANT INSERT
+GRANT CREATE
+
+Papéis são grupos de privilégios
+
+CREATE ROLE 'engenharia'@'localhost'
+GRANT SELECT, INSERT ON *.* TO 'engenharia'@'localhost';
+GRANT 'engenharia'@'localhost' TO 'felippe'@'localhost';
+
+Ativa todas as permissões na hora de um login
+
+SET GLOBAL activate_all_roles_on_login = TRUE;
+
+Plano de Gerenciamento de Acesso de Usuários

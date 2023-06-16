@@ -1,0 +1,120 @@
+Conversão de números e binários em data:
+
+Entre números e textos
+
+Date
+yyyy-mm-dd
+Consultar metadados para saber o tipo de dados.
+
+
+Datetime
+yyyy-mm-dd hh:mm:ss (registrada no fuso-horário dos dados (geralmente UTC))
+essa representação pode ser em milissegundos.
+
+pode ser convertido em date apenas usando a função DATE(column_name) AS
+pode ser convertido para timestamp usando a função UNIX_TIMESTAMP (column_name) AS
+
+Timestamp
+utilizando por computadores.
+É o número de segundos desde 1970-01-01 00:00:00 (UTC), em inteiros.
+
+Operações com data
+
+Now() - retorna a data e a hora atual (yyyy-mm-dd hh:mm:ss)
+Curdate() - retonra a data atual (yyyy-mm-dd)
+UNIX_TIMESTAMP() - timestamp atual (número inteiro)
+Current_Time() - retorna a hora atual(hh:mm:ss)
+
+Comparação entre datas
+Datediff() - diferença entre duas datas em dias
+TIMEDIFF() - diferença entre dois períodos, em hh:mm:ss
+
+Operações com datas
+DATE_SUB()
+DATE_ADD(CURDATE(), INTERVAL 1 day)
+
+os intervalos podem ser, month, week, year and day.
+
+EXTRAÇÃO
+SELECT EXTRACT (DAY FROM CURDATE()), retorna o tipo de tempo
+desejado.
+
+TRUNCAMENTO
+DATE_FORMAT(CURDATE(), "%Y-%m-01) - Truncamento para mês
+DATE_FORMAT(CURDATE(), "Y-01-01) - Truncamento para ano
+
+Função utilizada em outros softwares - DATE_TRUNC()
+
+Extração de Semanas
+SELECT EXTRACT(WEEK FROM CURDATE()) AS semana_atual, /*Isto retorna semana do ano*/
+DATE_SUB(CURDATE(), INTERVAL DAYOFWEEK(CURDATE()) - 1 DAY), /*AQUI INCLUI O DOMINGO COMO PRIMEIRO DIA) */
+DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY); /*AQUI INCLUI A SEGUNDA COMO PRIMEIRO DIA*/
+
+Concatenando Duas ou Mais Colunas
+INIT_CAP (em outros softwares)- ler a documentação do mysql
+SELECT CONCAT(first_name, " ", last_name) AS full_name
+FROM batata
+
+existe a CONCAT_WS
+SELECT CONCAT_WS(" ", first_name, last_name) AS full_name
+FROM sakila.staff;
+
+Retornar texto de trás pra frente
+SELECT REVERSE(first_name) FROM sakila.staff
+
+SELECIONAR TEXTO DENTRO DE TEXTO
+	LEFT(nome, 3) AS esq /*contando a partir da esquerda em n de caractéres
+	RIGHT(nome, 2) AS dir /*retorna a partir da direita em n caracteres
+	MID(nome,2, 6) AS meio
+
+SUBSTITUIR TEXTO
+	Replace(coluna, "buscar","substituir") AS ...
+
+FUNÇÃO DE REMOVER ESPAÇO EM BRANCO
+TRIM(coluna) - Remove espaços antes e depois do texto
+RTRIM(coluna) - Remove espaços em branco depois do texto
+LTRIM(coluna) - Remove espaços em brancos antes do texto
+
+FUNÇÃO DE ADICIONAR TEXTO
+LPAD(coluna, texto) - Adiciona a esquerda
+RPAD(coluna, texto) - Adiciona a direita
+
+
+EXPRESSÕES REGULARES - FORMAS DE EXTRAIR TEXTO
+MYSQL utiliza o ICU
+REGEXP
+RLIKE
+REGEXP_LIKE (buscam por texto que correponsdem a expresão e retornam booleano)
+REGEXP_REPLACE() - substituição de texto (buscando por expressão)
+REGEXP_SUBSTR() - retorna parte do texto que corresponde a expressão.
+
+REGEXP(texto_busca, expr_regular)
+
+Ex:
+REGEXP_LIKE ("abcdefghi", "abc") se idx 2 existe em idx 1.
+REGEXP_SUBSTR usando "^" indica que o texto deve começar com a string
+se usando "[a-z]" -qualquer uma das letras mínusculas do alfabeto
+se usando "[a-z]*" qualquer número de caracteres que correspondam a essa condição
+
+
+Exemplos de expressões regulares
+
+SELECT *
+ FROM sakila.film.list
+WHERE REGEXP_LIKE(actors, "DAN")
+
+Retorna os filmes que contém "DAN" na coluna atores
+
+REGEXP_LIKE pode ser substituido por, ex:
+SELECT *
+ FROM sakila.film.list
+WHERE REGEXP_LIKE(description, "TEACHER")
+WHERE description LIKE ("%TEACHER%")
+
+para começar com usamos:
+WHERE REGEXP_LIKE(descpriton, "^TEACHER")
+ou
+WHERE description LIKE ("TEACHER%")
+
+
+

@@ -1,0 +1,12 @@
+1) select * from address where address like "%West Bengali"
+Nenhum endereço foi encontrado com este nome.
+
+2) select * from payment where amount > 5
+
+3) select * from payment where amount > 1 and amount < 5
+   select * from payment where amount between 1 and 5
+
+4) select * from film where rating like "PG" or "PG-13"
+   select * from film where rating in ("PG", "PG-13")
+
+5) select * from rental where return_date is null

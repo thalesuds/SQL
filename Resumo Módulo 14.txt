@@ -1,0 +1,42 @@
+Transação
+
+Bloco de execução indivisível.
+Propriedades das transações.
+Atomicity - atomicidade, ser indivisível.
+Consistência - respeitar as condições do banco (constrains, primary keys, tipos de variáveis)
+Isolation - devem ocorrer de forma separada, sem uma influenciar a outra
+Durability - durabilidade, vem de padrão dos softwares. Garante que os dados sejam salvos.
+
+
+Controle de execução
+SET autocommit = 0;
+
+INSERT INTO sgpm.departamentos(nome, escritório) VALUES ("Analytics", "Belo Horizonte");
+
+COMMIT
+ROLLBACK
+
+DECLARE nomeVariavel INT DEAFULT 1;
+
+SET @variavel_1 := 10;
+
+SELECT *
+FROM tableName
+WHERE customer.id <= variavel 1;
+
+
+PROCEDIMENTOS ARMAZENADOS
+
+DELIMITER $$
+
+CREATE PROCEDURE retonra_clientes ()
+BEGIN
+
+SELECT first_name, last_name
+	FROM sakila.customer
+ORDER BY first_name
+
+END $$
+DELIMITER ;
+
+CALL retnra_clientes
